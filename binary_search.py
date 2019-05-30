@@ -1,5 +1,6 @@
 def search(word, dicList, list):
     target = ''.join(word)
+    #target = word 
     result = None
     left = 0
     right = len(dicList) - 1
@@ -22,4 +23,5 @@ def search(word, dicList, list):
         pass
 
     else:
+        print(target)
         list.append(target)

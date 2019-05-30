@@ -25,6 +25,9 @@ print(list)
 #アルファベット順に並べる
 sortedList = sorted(list)
 #newList.sort()
+print("\nsort")
+print(sortedList)
+
 
 #アナグラムを組んだらここに格納
 anagrams = []
@@ -32,11 +35,20 @@ anagrams = []
 #全部の組み合わせを考える　consider combination
 permuList = itertools.permutations(sortedList)
 
+#重複を削除
+uniquePermuList = set(permuList)
+
+# print("\nunique")
+# print(uniquePermuList)
+
 #辞書を持ってくる
 wordsDicList = loadDictionary.load('dictionary.txt')
+wordsDicList = sorted(wordsDicList)
 
-for permuWord in permuList:
+#辞書の中から意味あるものを探す
+for permuWord in uniquePermuList:
     binary_search.search(permuWord, wordsDicList, anagrams)
 
 
+print("\nanagrams:")
 print(anagrams)
