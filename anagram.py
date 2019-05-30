@@ -45,9 +45,12 @@ uniquePermuList = set(permuList)
 wordsDicList = loadDictionary.load('dictionary.txt')
 wordsDicList = sorted(wordsDicList)
 
-#辞書の中から意味あるものを探す
+#辞書の中に一致するものを探す
 for permuWord in uniquePermuList:
-    binary_search.search(permuWord, wordsDicList, anagrams)
+    check = ''
+    for x in permuWord: #一文字づつみていく
+        check += x
+        binary_search.search(check, wordsDicList, anagrams)
 
 
 print("\nanagrams:")

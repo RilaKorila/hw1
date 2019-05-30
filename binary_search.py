@@ -1,6 +1,6 @@
 def search(word, dicList, list):
-    target = ''.join(word)
-    #target = word 
+    #target = ''.join(word)
+    target = word
     result = None
     left = 0
     right = len(dicList) - 1
@@ -8,9 +8,11 @@ def search(word, dicList, list):
     while left <= right:
         mid = int((left + right) / 2)
         #print("target: {}".format(target))
-
+        #print(dicList[mid])
         if dicList[mid] == target:
-            result = dicList[mid]
+            if len(target) == len(dicList[mid]):
+                print("OK")
+                result = dicList[mid]
             break
 
         elif dicList[mid] > target:
@@ -19,9 +21,5 @@ def search(word, dicList, list):
         else:
             left = mid + 1
 
-    if result == None:
-        pass
-
-    else:
-        print(target)
-        list.append(target)
+    if result != None:
+        list.append(result)
