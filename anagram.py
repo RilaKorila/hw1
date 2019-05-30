@@ -10,16 +10,6 @@ list = input('>> ') #get 16 characters
 list = list.lower()
 
 print(list)
-#newList = [] #ここに1文字ずつ格納　store the character one by one
-
-# for chara in list:
-#     if chara == 'Q': #Qはuとセット　make Q and u one group
-#         newList.append('Qu')
-#     elif chara == 'u':
-#         #何もしない do nothing
-#         pass
-#     else:
-#         newList.append(chara)
 
 
 #アルファベット順に並べる
@@ -38,20 +28,33 @@ permuList = itertools.permutations(sortedList)
 #重複を削除
 uniquePermuList = set(permuList)
 
-# print("\nunique")
-# print(uniquePermuList)
-
 #辞書を持ってくる
 wordsDicList = loadDictionary.load('dictionary.txt')
 wordsDicList = sorted(wordsDicList)
+wordsNewDicList = []
+for word in wordsDicList:
+    if len(word) >= 4:
+        wordsNewDicList.append(word)
+
 
 #辞書の中に一致するものを探す
 for permuWord in uniquePermuList:
     check = ''
     for x in permuWord: #一文字づつみていく
         check += x
-        binary_search.search(check, wordsDicList, anagrams)
+        binary_search.search(check, wordsNewDicList, anagrams)
 
 
-print("\nanagrams:")
-print(anagrams)
+# print("\nanagrams:")
+# print(anagrams)
+
+uniqueAnagrams = set(anagrams)
+print(uniqueAnagrams)
+top = ''
+
+for word in uniqueAnagrams:
+    if len(top) <= len(word):
+        top = word
+
+print('\nthe longest anagram: ')
+print(top)

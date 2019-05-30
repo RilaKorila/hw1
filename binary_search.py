@@ -11,7 +11,6 @@ def search(word, dicList, list):
         #print(dicList[mid])
         if dicList[mid] == target:
             if len(target) == len(dicList[mid]):
-                print("OK")
                 result = dicList[mid]
             break
 
