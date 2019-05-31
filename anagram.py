@@ -1,15 +1,16 @@
 #coding: UTF-8
+
 import itertools
-import loadDictionary
-import binary_search
+import dictionary
+import binarysearch
 
 print("input character: ")
-list = input('>> ') #get 16 characters
+input_list = input('>> ') #get 16 characters
 
 #リストの中身を小文字に変える
-list = list.lower()
+lowered_input_list = input_list.lower()
 
-print(list)
+print(lowered_input_list)
 #newList = [] #ここに1文字ずつ格納　store the character one by one
 
 # for chara in list:
@@ -23,20 +24,21 @@ print(list)
 
 
 #アルファベット順に並べる
-sortedList = sorted(list)
+sorted_list = sorted(lowered_input_list)
 #newList.sort()
 
 #アナグラムを組んだらここに格納
 anagrams = []
 
 #全部の組み合わせを考える　consider combination
-permuList = itertools.permutations(sortedList)
+permu_list = itertools.permutations(sorted_list)
 
 #辞書を持ってくる
-wordsDicList = loadDictionary.load('dictionary.txt')
+words = dictionary.load('dictionary.txt')
+sorted_words = sorted(words)
 
-for permuWord in permuList:
-    binary_search.search(permuWord, wordsDicList, anagrams)
+for permu_word in permu_list:
+    binarysearch.search(permu_word, sorted_words, anagrams)
 
 
 print(anagrams)
