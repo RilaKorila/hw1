@@ -1,6 +1,5 @@
 class Matrix {
-  public static void main(String args[])
-  {
+  public static void main(String args[]) {
     if (args.length != 1) {
       System.out.println("usage: java Matrix N");
       return;
@@ -17,7 +16,6 @@ class Matrix {
       for (j = 0; j < n; j++) {
         a[i][j] = i * n + j;
         b[i][j] = j * n + i;
-        c[i][j] = 0;
       }
     }
 
@@ -26,6 +24,7 @@ class Matrix {
     //C = A * B
     for (i=0; i<n; i++) {
       for (j=0; j<n; j++) {
+        c[i][j] = 0;
         for (int k=0; k<n; k++) {
             c[i][j] += a[i][k] * b[k][j];
         }
