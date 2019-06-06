@@ -1,10 +1,10 @@
 class Matrix {
-  public static void main(String args[])
-  {
+  public static void main(String args[]){
     if (args.length != 1) {
       System.out.println("usage: java Matrix N");
       return;
     }
+    
     int n = Integer.parseInt(args[0]);
 
     double[][] a = new double[n][n]; // Matrix A

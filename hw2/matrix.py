@@ -21,7 +21,6 @@ while n<200:
             for j in range(n):
                 a[i, j] = i * n + j
                 b[i, j] = j * n + i
-                c[i, j] = 0
 
         begin = time.time()
 
@@ -29,6 +28,7 @@ while n<200:
         for i in range(n):
             for j in range(n):
                 for k in range(n):
+                    c[i, j] = 0
                     c[i, j] += a[i, k] * b[k, j]
 
         end = time.time()
