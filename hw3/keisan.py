@@ -29,6 +29,14 @@ def readDivided(line, index):
   token = {'type': 'DIVIDED'}
   return token, index + 1
 
+def readBracket(line, index):
+  token = {'type': 'OPEN'}
+  return token, index + 1
+
+def readBracketEnd(line, index):
+  token = {'type': 'CLOSE'}
+  return token, index + 1
+
 def tokenize(line):
   tokens = []
   index = 0
@@ -40,8 +48,16 @@ def tokenize(line):
       elif line[index] == '-':
           (token, index) = readMinus(line, index)
       elif line[index] == '*':
-          (token, index) = readMultiplied(line, index)elif line[index] == '/':
+          (token, index) = readMultiplied(line, index)
+      elif line[index] == '/':
           (token, index) = readDivided(line, index)
+      elif line[index] == '(':
+          (token, index) = readBracket(line, index)
+      elif line[index] == ')':
+          (token, index) = readBracketEnd(line, index)
+          # inside_bracket = []
+          # while line[index] != ')' and index < len(line):
+          #     inside_bracket.append(line[index])
       else:
           print('Invalid character found: ' + line[index])
           exit(1)
@@ -49,7 +65,7 @@ def tokenize(line):
   return tokens
 
 
-def evaluate1(tokens):
+def evaluate_multiplied_divided(tokens):
 # '''
 # Calucurate only * and /
 #     Argments: tokens
@@ -77,7 +93,7 @@ def evaluate1(tokens):
       index += 1
   return new_tokens
 
-def evaluate2(tokens):
+def evaluate_plus_minus(tokens):
   # '''
   #   Calucurate only + and -
   #       Argments: (array[string])tokens
@@ -99,6 +115,24 @@ def evaluate2(tokens):
       index += 1
   return answer
 
+def evaluate(tokens):
+    index = 0
+    answer = 0
+
+    while index < len(tokens):
+        if tokens[index]['type'] == 'OPEN':
+            tempTokens = []
+            tempIndex = index
+            while tokens[index]['type'] != 'CLOSE':
+                tempTokens.append(tokens[index])
+                index
+
+            tempAnswer = evaluate(tempTokens)
+            organizeTokens()
+
+            # end if
+    tokens = evaluate_multiplied_divided(tokens)
+    answer = evaluate_plus_minus(tokens)
 
 def test(line):
   tokens = tokenize(line)
@@ -123,6 +157,5 @@ while True:
     print('> ', end="")
     line = input()
     tokens = tokenize(line)
-    tokens = evaluate1(tokens)
-    answer = evaluate2(tokens)
+    answer = evaluate(tokens)
     print("answer = %f\n" % answer)
