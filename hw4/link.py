@@ -3,8 +3,9 @@ def readData(file_name):
         file = open(file_name)
         lines = file.readlines()
 
-        for line in lines:
-            print(line)
+        print(lines[1])
+        # for line in lines:
+        #     print()
 
     except Exception as e:
         print(e)
@@ -12,16 +13,19 @@ def readData(file_name):
     finally:
         file.close()
 
-
+    return lines
 
 while True:
+    linksData = readData('./.gitignore/links.txt')
+    nicknamesData = readData('./.gitignore/nicknames.txt')
+
+    #makeGraph(linksData)
     print('from > ', end = "")
     start = input()
     print('to > ', end = "")
     goal = input()
 
-    readData('./.gitignore/links.txt')
-    readData('./.gitignore/nicknames.txt')
+
     answer = 3
     print("from %s to %s -> %d steps" % (start, goal, answer))
 
